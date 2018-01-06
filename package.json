@@ -1,0 +1,35 @@
+{
+  "name": "@steemit/lineman",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "make ci-test"
+  },
+  "engines": {
+    "node": "^8"
+  },
+  "dependencies": {
+    "bunyan": "^2.0.2",
+    "config": "^1.26.2",
+    "toml": "^2.3.3",
+    "uws": "^9.14.0"
+  },
+  "devDependencies": {
+    "@types/bunyan": "^1.8.2",
+    "@types/config": "0.0.32",
+    "@types/mocha": "^2.2.41",
+    "@types/needle": "^2.0.2",
+    "@types/node": "^8.0.26",
+    "@types/uws": "^0.13.1",
+    "@types/ws": "^3.2.1",
+    "mocha": "^3.5.0",
+    "needle": "^2.1.0",
+    "nsp": "^2.8.0",
+    "nyc": "^11.1.0",
+    "onchange": "^3.2.1",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.0",
+    "ws": "^4.0.0"
+  }
+}

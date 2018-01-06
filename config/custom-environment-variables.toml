@@ -1,0 +1,6 @@
+port = 'PORT'
+num_workers = 'NUM_WORKERS'
+rpc_node = 'RPC_NODE'
+[log]
+__name = 'LOG_STREAMS'
+__format = 'json'

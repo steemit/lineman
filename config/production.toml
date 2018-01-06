@@ -1,0 +1,6 @@
+num_workers = 0
+port = 8080
+rpc_node = 'https://api.steemit.com'
+[[log]]
+level = 'info'
+out = 'stdout'

@@ -1,0 +1,18 @@
+# lineman default configuration, override in your config/local-development.toml
+
+# port to listen on
+port = 8090
+
+# application name used for logging and service namespace
+name = 'lineman'
+
+# number of worker processes to spawn, 0 = autodetect
+num_workers = 1
+
+# http(s) steem rpc node where rpc calls are proxied to
+rpc_node = 'https://api.steemitdev.com'
+
+# logging output, can be repeated
+[[log]]
+level = 'debug'
+out = 'stdout' # path or stdout/err
