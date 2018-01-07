@@ -1,6 +1,4 @@
-FROM node:8-alpine
-
-RUN apk add --no-cache make bash git yarn g++
+FROM node:8
 
 WORKDIR /app
 COPY . .
