@@ -42,21 +42,29 @@ wss.on('connection', (socket) => {
     log.info('new connection')
     socket.onclose = () => { log.info('connection closed') }
     socket.onerror = (error) => { log.warn(error, 'socket error') }
-    socket.onmessage = async (message) => {
-        log.debug({data: message.data}, 'send')
+    socket.onmessage = (message) => {
+        let reqData: any
+        try {
+            reqData = JSON.parse(message.data)
+        } catch (error) {
+            socket.send(`{"jsonrpc":"2.0","error":{"code":-32600,"message":"Invalid request"}`)
+            return
+        }
+        if (!reqData.jsonrpc) {
+            reqData.jsonrpc = '2.0'
+        }
+        log.debug({data: reqData}, 'send')
         const request = httpx.request(rpcOpts, (response) => {
             const chunks: Buffer[] = []
             response.on('data', (chunk) => chunks.push(chunk as Buffer))
             response.on('end', () => {
-                const data = Buffer.concat(chunks)
-                log.debug({data: data.toString()}, 'recv')
-                socket.send(data)
+                const resData = Buffer.concat(chunks)
+                log.debug({data: resData.toString()}, 'recv')
+                socket.send(resData)
             })
         })
-        const messageData = Buffer.from(message.data, 'utf8')
         request.setHeader('Content-Type', 'application/json')
-        request.setHeader('Content-Length', messageData.byteLength)
-        request.write(messageData)
+        request.write(JSON.stringify(reqData))
         request.end()
     }
 })
@@ -64,7 +72,7 @@ wss.on('connection', (socket) => {
 function run() {
     const port = config.get('port')
     server.listen(port, () => {
-        logger.info('running on port %d', port)
+        logger.info('running on port %d proxying %s', port, rpcOpts.hostname)
     })
 }
 

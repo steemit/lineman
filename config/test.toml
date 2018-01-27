@@ -1,3 +1,4 @@
+rpc_node = 'https://api.steemit.com'
 [[log]]
 level = 'fatal'
 out = 'stdout'

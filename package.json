@@ -1,12 +1,12 @@
 {
   "name": "@steemit/lineman",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "test": "make ci-test"
   },
   "engines": {
-    "node": "^8"
+    "node": ">=8"
   },
   "dependencies": {
     "bunyan": "^2.0.2",
