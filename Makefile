@@ -27,7 +27,6 @@ test: node_modules
 
 .PHONY: ci-test
 ci-test: node_modules
-	nsp check
 	tslint -p tsconfig.json -c tslint.json
 	NODE_ENV=test nyc -r lcov -e .ts -i ts-node/register mocha --reporter tap --require ts-node/register test/*.ts
 
